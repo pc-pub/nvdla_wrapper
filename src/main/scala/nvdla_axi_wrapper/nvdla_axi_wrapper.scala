@@ -10,7 +10,7 @@ import axi2dbb._
 class NvdlaAXIWrapper extends RawModule {
   val core_port = IO(new NvdlaCorePort)
   val s00_axi = IO(Flipped(new AXILitePort(18, 1, "s00_axi_")))
-  val m03_axi = IO(new AXIFullPort(32, 2, 8, 0, "m03_axi"))
+  val m00_axi = IO(new AXIFullPort(32, 2, 8, 0, "m03_axi"))
 
   val nvdla = Module(new NV_nvdla())
   val axi2csb = withClockAndReset(core_port.dla_csb_clock, !core_port.dla_reset_rstn)(Module(new AXI2CSB()))
