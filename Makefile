@@ -6,10 +6,10 @@ SRC_DIRS = $(shell find $(SRC_PATH) -type d)
 SRC_FILES = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.scala))
 TARGET = NvdlaAXIWrapper.v
 
-$(OUTDIR)/$(TARGET) : $(SRC_FILES)
+$(OUTDIR)/$(TARGET) : $(SRC_FILES) Makefile
 	sbt "runMain nvdla_axi_wrapper.GenNvdlaAXIWrapper -td ${OUTDIR}" && \
-	sed -i -e 's/.core_port_replaced_/./' \
-	-e 's/.csb_port_replaced_/./' \
+	sed -i -e 's/\.core_port_replaced_/\./' \
+	-e 's/\.csb_port_replaced_/\./' \
 	${OUTDIR}/NvdlaAXIWrapper.v
 
 all:$(TARGET)
